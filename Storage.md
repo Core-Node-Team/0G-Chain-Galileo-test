@@ -145,9 +145,8 @@ curl -X POST http://localhost:5678 -H "Content-Type: application/json" -d '{"jso
 
 ```
 systemctl stop zgsd
-rm -rf $HOME/0g-storage-node/run/db
 ```
-
+👉Not: eğer eski kurulum kaldıysa bunuda yapın `rm -rf $HOME/0g-storage-node/run/db`
 ```
 cd
 systemctl stop zgsd
