@@ -24,9 +24,7 @@
 
 ### Public RPC
 
-https://og-testnet-rpc.corenodehq.xyz
-
-https://og-testnet-api.corenodehq.xyz
+Soon
 ## 1️⃣ Install Required Packages
 
 ```bash
