@@ -77,7 +77,7 @@ cargo build --release
 $HOME/0g-storage-node/target/release/zgs_node --version
 ```
 ```
-curl -o $HOME/0g-storage-node/run/config.toml https://raw.githubusercontent.com/Core-Node-Team/0G-Chain-Galileo-test/refs/heads/main/config-testnet-turbo.toml
+curl -o $HOME/0g-storage-node/run/config-testnet-turbo.toml https://raw.githubusercontent.com/Core-Node-Team/0G-Chain-Galileo-test/refs/heads/main/config-testnet-turbo.toml
 ```
 👉NOT: servise private keyi yazın. rpc kendinizinkini kullanıcaksanız değiştirin.
 
