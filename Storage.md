@@ -159,7 +159,7 @@ git submodule update --init
 cargo build --release
 ```
 ```
-curl -o $HOME/0g-storage-node/run/config.toml https://raw.githubusercontent.com/Core-Node-Team/0G-Chain-Galileo-test/refs/heads/main/config-testnet-turbo.toml
+curl -o $HOME/0g-storage-node/run/config-testnet-turbo.toml https://raw.githubusercontent.com/Core-Node-Team/0G-Chain-Galileo-test/refs/heads/main/config-testnet-turbo.toml
 ```
 ```
 sudo tee /etc/systemd/system/zgsd.service > /dev/null <<EOF
