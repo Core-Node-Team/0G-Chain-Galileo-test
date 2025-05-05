@@ -76,10 +76,11 @@ cargo build --release
 ```
 $HOME/0g-storage-node/target/release/zgs_node --version
 ```
-
+```
+curl -o $HOME/0g-storage-node/run/config.toml https://raw.githubusercontent.com/Core-Node-Team/0G-Chain-Galileo-test/refs/heads/main/config-testnet-turbo.toml
+```
 👉NOT: servise private keyi yazın. rpc kendinizinkini kullanıcaksanız değiştirin.
 
-👉NOT: 2 çeşit çalıştırma yapmışlar turbolu versiyonuda var. `--config config-testnet-standard.toml`  YERİNE `--config config-testnet-turbo.toml` yazmanız yeterli.
 
 ## Servisi kuralım
 ```
@@ -158,7 +159,9 @@ git checkout tags/v1.0.0 -b v1.0.0
 git submodule update --init
 cargo build --release
 ```
-
+```
+curl -o $HOME/0g-storage-node/run/config.toml https://raw.githubusercontent.com/Core-Node-Team/0G-Chain-Galileo-test/refs/heads/main/config-testnet-turbo.toml
+```
 ```
 sudo tee /etc/systemd/system/zgsd.service > /dev/null <<EOF
 [Unit]
