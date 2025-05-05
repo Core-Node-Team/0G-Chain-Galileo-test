@@ -24,7 +24,8 @@
 
 ### Public RPC
 
-Soon
+https://0g-galileo-evmrpc.corenodehq.xyz
+
 ## 1️⃣ Install Required Packages
 
 ```bash
