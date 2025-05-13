@@ -52,9 +52,9 @@ source $HOME/.bash_profile
 
 ```bash
 cd $HOME
-wget https://github.com/0glabs/0gchain-ng/releases/download/v1.0.1/galileo-v1.0.1.tar.gz
-tar -xzvf galileo-v1.0.1.tar.gz -C $HOME
-rm -rf $HOME/galileo-v1.0.1.tar.gz
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.0/galileo-v1.1.0.tar.gz
+tar -xzvf galileo-v1.1.0.tar.gz -C $HOME
+rm -rf $HOME/galileo-v1.1.0.tar.gz
 mv $HOME/galileo $HOME/galileo-used
 ```
 
@@ -159,19 +159,19 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/0gchaind start \\
-    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \\
-    --beacon-kit.kzg.trusted-setup-path=$HOME/galileo-used/kzg-trusted-setup.json \\
-    --beacon-kit.engine.jwt-secret-path=$HOME/galileo-used/jwt-secret.hex \\
-    --beacon-kit.kzg.implementation=crate-crypto/go-kzg-4844 \\
-    --beacon-kit.block-store-service.enabled \\
-    --beacon-kit.node-api.enabled \\
-    --beacon-kit.node-api.logging \\
-    --beacon-kit.node-api.address 0.0.0.0:${OG_PORT}500 \\
-    --pruning=custom \\
-    --home $HOME/.0gchaind/0g-home/0gchaind-home \\
-    --p2p.external_address $(curl -s http://ipv4.icanhazip.com):${OG_PORT}656 \\
-    --p2p.seeds b30fb241f3c5aee0839c0ea55bd7ca18e5c855c1@8.218.94.246:26656
+ExecStart=$HOME/go/bin/0gchaind start \
+    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \
+    --beacon-kit.kzg.trusted-setup-path=$HOME/galileo-used/kzg-trusted-setup.json \
+    --beacon-kit.engine.jwt-secret-path=$HOME/galileo-used/jwt-secret.hex \
+    --beacon-kit.kzg.implementation=crate-crypto/go-kzg-4844 \
+    --beacon-kit.block-store-service.enabled \
+    --beacon-kit.node-api.enabled \
+    --beacon-kit.node-api.logging \
+    --beacon-kit.node-api.address 0.0.0.0:${OG_PORT}500 \
+    --pruning=custom \
+    --home $HOME/.0gchaind/0g-home/0gchaind-home \
+    --p2p.external_address $(curl -s http://ipv4.icanhazip.com):${OG_PORT}656 \
+    --p2p.seeds 85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656
 Environment=CHAIN_SPEC=devnet
 WorkingDirectory=$HOME/galileo-used
 Restart=always
@@ -193,13 +193,14 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/geth \\
-    --config $HOME/galileo-used/geth-config.toml \\
-    --datadir $HOME/.0gchaind/0g-home/geth-home \\
-    --networkid 80087 \\
-    --http.port ${OG_PORT}545 \\
-    --ws.port ${OG_PORT}546 \\
-    --authrpc.port ${OG_PORT}551 \\
+ExecStart=$HOME/go/bin/geth \
+    --config $HOME/galileo-used/geth-config.toml \
+    --datadir $HOME/.0gchaind/0g-home/geth-home \
+    --networkid 16601 \
+    --http.port ${OG_PORT}545 \
+    --ws.port ${OG_PORT}546 \
+    --authrpc.port ${OG_PORT}551 \
+    --bootnodes enode://de7b86d8ac452b1413983049c20eafa2ea0851a3219c2cc12649b971c1677bd83fe24c5331e078471e52a94d95e8cde84cb9d866574fec957124e57ac6056699@8.218.88.60:30303 \
     --port ${OG_PORT}303
 Restart=always
 WorkingDirectory=$HOME/galileo-used
