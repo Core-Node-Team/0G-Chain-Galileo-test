@@ -48,6 +48,15 @@ source $HOME/.bash_profile
 
 ## 2️⃣ Galileo Node Setup
 
+NOT: eski kurulum varsa silelim
+
+```bash
+systemctl stop 0gchaind
+systemctl stop geth
+rm -rf $HOME/galileo-used
+rm -rf $HOME/.0gchaind
+```
+
 ### ➡️ Download and Install Node Files
 
 ```bash
