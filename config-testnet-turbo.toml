@@ -33,7 +33,7 @@
 
 # List of nodes to bootstrap UDP discovery. Note, `network_enr_address` should be
 # configured as well to enable UDP discovery.
-network_boot_nodes = ["/ip4/47.251.88.201/udp/1234/p2p/16Uiu2HAmFGrDV8wKToa1dd8uh6bz8bSY28n33iRP3pvfeBU6ysCw","/ip4/47.76.49.188/udp/1234/p2p/16Uiu2HAmBb7PQzvfZjHBENcF7E7mZaiHSrpBoH7mKTyNijYdqMM6","/ip4/47.251.79.83/udp/1234/p2p/16Uiu2HAkvJYQABP1MdvfWfUZUzGLx1sBSDZ2AT92EFKcMCCPVawV", "/ip4/47.238.87.44/udp/1234/p2p/16Uiu2HAmFGsLoajQdEds6tJqsLX7Dg8bYd2HWR4SbpJUut4QXqCj", "/ip4/47.251.78.104/udp/1234/p2p/16Uiu2HAmSe9UWdHrqkn2mKh99b9DwYZZcea6krfidtU3e5tiHiwN", "/ip4/47.76.30.235/udp/1234/p2p/16Uiu2HAm5tCqwGtXJemZqBhJ9JoQxdDgkWYavfCziaqaAYkGDSfU","/ip4/47.251.117.133/udp/1234/p2p/16Uiu2HAmTVDGNhkHD98zDnJxQWu3i1FL1aFYeh9wiQTNu4pDCgps","/ip4/47.76.61.226/udp/1234/p2p/16Uiu2HAm2k6ua2mGgvZ8rTMV8GhpW71aVzkQWy7D37TTDuLCpgmX"]
+network_boot_nodes = ["/ip4/47.251.79.83/udp/1234/p2p/16Uiu2HAkvJYQABP1MdvfWfUZUzGLx1sBSDZ2AT92EFKcMCCPVawV", "/ip4/47.238.87.44/udp/1234/p2p/16Uiu2HAmFGsLoajQdEds6tJqsLX7Dg8bYd2HWR4SbpJUut4QXqCj", "/ip4/47.251.78.104/udp/1234/p2p/16Uiu2HAmSe9UWdHrqkn2mKh99b9DwYZZcea6krfidtU3e5tiHiwN", "/ip4/47.76.30.235/udp/1234/p2p/16Uiu2HAm5tCqwGtXJemZqBhJ9JoQxdDgkWYavfCziaqaAYkGDSfU"]
 
 # List of libp2p nodes to initially connect to.
 # network_libp2p_nodes = []
@@ -77,14 +77,14 @@ network_boot_nodes = ["/ip4/47.251.88.201/udp/1234/p2p/16Uiu2HAmFGrDV8wKToa1dd8u
 #######################################################################
 
 # RPC endpoint to sync event logs on EVM compatible blockchain.
-# blockchain_rpc_endpoint = "https://evmrpc-testnet.0g.ai"
+# blockchain_rpc_endpoint = "http://127.0.0.1:8545"
 
 # Flow contract address to sync event logs.
-log_contract_address = "0x56A565685C9992BF5ACafb940ff68922980DBBC5"
+log_contract_address = "0x5f1D96895e442FC0168FA2F9fb1EBeF93Cb5035e"
 
 # Block number to sync event logs from blockchain. Generally, this is
 # the block number when flow contract deployed.
-log_sync_start_block_number = 1
+log_sync_start_block_number = 0
 
 # Number of blocks to confirm a transaction.
 # confirmation_block_count = 3
@@ -157,11 +157,8 @@ log_sync_start_block_number = 1
 ###                     Mine Config Options                         ###
 #######################################################################
 
-# Mine contract address for PoRA.
-mine_contract_address = "0xB87E0e5657C25b4e132CB6c34134C0cB8A962AD6"
-
-# Reward contract address for incentive.
-reward_contract_address = "0x233B2768332e4Bae542824c93cc5c8ad5d44517E"
+# Mine contract address for incentive.
+mine_contract_address = "0xB0F6c3E2E7Ada3b9a95a1582bF6562e24A62D334"
 
 # Miner key is used to sign blockchain transaction for incentive.
 # The value should be a hex string of length 64 without 0x prefix.
@@ -180,7 +177,7 @@ reward_contract_address = "0x233B2768332e4Bae542824c93cc5c8ad5d44517E"
 
 # CPU Usage percentage for PoRA mining. 100 means one CPU core is fully loaded. 
 #
-miner_cpu_percentage = 600
+# miner_cpu_percentage = 100
 
 #######################################################################
 ###                   Sharding Config Options                       ###
@@ -191,12 +188,13 @@ miner_cpu_percentage = 600
 # If this limit is reached, the node will update its `shard_position`
 # and store only half data.
 #
-db_max_num_sectors = 1000000000
+db_max_num_sectors = 4000000000
 
 # The format is <shard_id>/<shard_number>, where the shard number is 2^n.
 # This only applies if there is no stored shard config in db.
 # shard_position = "0/2"
 
+reward_contract_address = "0xdf758Bd14306482DeCbeF186eC6f18e4e79aaaE6"
 # The time interval to check if we should half `shard_position` to prune data.
 #
 # prune_check_time_s = 60
@@ -226,7 +224,7 @@ db_max_num_sectors = 1000000000
 ###                   Router Config Options                         ###
 #######################################################################
 
-# [router]
+[router]
 
 # Timeout to publish file announcements in batch.
 # batcher_timeout = "1s"
@@ -240,7 +238,7 @@ batcher_announcement_capacity = 100
 #######################################################################
 ###                   File Sync Config Options                      ###
 #######################################################################
-# [sync]
+[sync]
 
 # Enable file sync among peers automatically. When enabled, each node will store
 # all files, and sufficient disk space is required.
@@ -272,10 +270,10 @@ auto_sync_enabled = true
 # max_bandwidth_bytes = 0
 
 # Maximum threads to sync files in sequence.
-max_sequential_workers = 8
+# max_sequential_workers = 0
 
 # Maximum threads to sync files randomly.
-max_random_workers = 8
+# max_random_workers = 8
 
 # Timeout to terminate a file sync in sequence.
 # sequential_find_peer_timeout = "5s"
