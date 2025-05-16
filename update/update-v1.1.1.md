@@ -19,6 +19,10 @@ sudo chmod 777 $HOME/galileo-update/bin/0gchaind
 cp $HOME/galileo-update/bin/geth $HOME/go/bin/geth
 cp $HOME/galileo-update/bin/0gchaind $HOME/go/bin/0gchaind
 ```
+```bash
+echo "export OG_PORT=56" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
 
 ```bash
 sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
