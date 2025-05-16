@@ -42,7 +42,7 @@ journalctl -u geth -fo cat
 
 ```bash
 cd $HOME
-wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.0/galileo-v1.1.1.tar.gz
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.1/galileo-v1.1.1.tar.gz
 tar -xzvf galileo-v1.1.1.tar.gz -C $HOME
 rm -rf $HOME/galileo-v1.1.1.tar.gz
 mv $HOME/galileo $HOME/galileo-used
