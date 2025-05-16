@@ -1,5 +1,6 @@
 
-
+NOT:If you write all the information in config.toml, do the other option. Due to the installation differences, you can do it in 2 ways. Choose the one that suits you. If you installed from corenode documents, do the first one. If you installed from somewhere else, do the second option.
+NOT: eğer tüm bilgileri config.toml yazıyorsanız diğer seçeneği yapın. kurulum farklarından ötürü 2 şekilde yapabilirsiniz. size uygun olanı seçin. eğer corenode dökumanalrından kurduysanız ilkini başka yerden kurduysanız 2.ci seçeneği yapın
 
 ```
 systemctl stop zgsd
