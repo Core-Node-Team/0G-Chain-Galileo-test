@@ -5,38 +5,81 @@ cd
 systemctl stop 0gchaind
 systemctl stop geth
 ```
-#### Dosyaları çekelim
+```bash
+cd $HOME
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.1/galileo-v1.1.1.tar.gz
+tar -xzvf galileo-v1.1.1.tar.gz -C $HOME
+rm -rf $HOME/galileo-v1.1.1.tar.gz
+mv $HOME/galileo $HOME/galileo-uupdate
 ```
-wget https://github.com/Core-Node-Team/0G-Chain-Galileo-test/raw/refs/heads/main/update/0gchaind.zip
-wget https://github.com/Core-Node-Team/0G-Chain-Galileo-test/raw/refs/heads/main/update/geth.zip
+
+```bash
+sudo chmod 777 $HOME/galileo-update/bin/geth
+sudo chmod 777 $HOME/galileo-update/bin/0gchaind
+cp $HOME/galileo-update/bin/geth $HOME/go/bin/geth
+cp $HOME/galileo-update/bin/0gchaind $HOME/go/bin/0gchaind
+cp $HOME/galileo-update/geth-config.toml $HOME/galileo-used/geth-config.toml
 ```
-#### Arşivleri aç
+
+```bash
+sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
+[Unit]
+Description=0GChainD Service
+After=network.target
+
+[Service]
+User=$USER
+WorkingDirectory=$HOME/galileo-used
+ExecStart=$HOME/go/bin/0gchaind start \\
+    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \\
+    --chain-spec devnet \\
+    --kzg.trusted-setup-path=$HOME/galileo-used/kzg-trusted-setup.json \\
+    --engine.jwt-secret-path=$HOME/galileo-used/jwt-secret.hex \\
+    --kzg.implementation=crate-crypto/go-kzg-4844 \\
+    --block-store-service.enabled \\
+    --node-api.enabled \\
+    --node-api.logging \\
+    --node-api.address 0.0.0.0:${OG_PORT}500 \\
+    --pruning=nothing \\
+    --home=$HOME/.0gchaind/0g-home/0gchaind-home \\
+    --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \\
+    --p2p.external_address=$(curl -s http://ipv4.icanhazip.com):${OG_PORT}656
+Restart=always
+RestartSec=5
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+EOF
 ```
-unzip -o 0gchaind.zip
-unzip -o geth.zip
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable geth.service
+sudo systemctl restart geth.service
+sudo systemctl enable 0gchaind.service
+sudo systemctl restart 0gchaind.service
 ```
-#### Binary dosyalarını taşı
+
+```bash
+sudo journalctl -u 0gchaind -u geth -f
 ```
-mv -f 0gchaind $HOME/go/bin/
-mv -f geth $HOME/go/bin/
-```
-#### İzinleri ayarla
-```
-chmod +x $HOME/go/bin/0gchaind
-chmod +x $HOME/go/bin/geth
-```
-#### Başlatalım
-```
-systemctl restart 0gchaind
-systemctl restart geth
-```
-#### Loglara bakalım
-```
-journalctl -u 0gchaind -fo cat
-```
-```
-journalctl -u geth -fo cat
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### ➡️ Download and Install Node Files
 
@@ -144,29 +187,29 @@ ln -sf $HOME/.0gchaind/0g-home/0gchaind-home/config/client.toml $HOME/.0gchaind/
 ```bash
 sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
 [Unit]
-Description=0gchaind Node Service
-After=network-online.target
+Description=0GChainD Service
+After=network.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/0gchaind start \
-    --chain-spec devnet \
-    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \
-    --kzg.trusted-setup-path=kzg-trusted-setup.json \
-    --engine.jwt-secret-path=jwt-secret.hex \
-    --kzg.implementation=crate-crypto/go-kzg-4844 \
-    --block-store-service.enabled \
-    --node-api.enabled \
-    --node-api.logging \
-    --node-api.address 0.0.0.0:${OG_PORT}500 \
-    --pruning=custom \
-    --home $HOME/.0gchaind/0g-home/0gchaind-home \
-    --p2p.external_address $(curl -s http://ipv4.icanhazip.com):${OG_PORT}656 \
-    --p2p.seeds 85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656
 WorkingDirectory=$HOME/galileo-used
+ExecStart=$HOME/go/bin/0gchaind start \\
+    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \\
+    --chain-spec devnet \\
+    --kzg.trusted-setup-path=$HOME/galileo-used/kzg-trusted-setup.json \\
+    --engine.jwt-secret-path=$HOME/galileo-used/jwt-secret.hex \\
+    --kzg.implementation=crate-crypto/go-kzg-4844 \\
+    --block-store-service.enabled \\
+    --node-api.enabled \\
+    --node-api.logging \\
+    --node-api.address 0.0.0.0:${OG_PORT}500 \\
+    --pruning=nothing \\
+    --home=$HOME/.0gchaind/0g-home/0gchaind-home \\
+    --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \\
+    --p2p.external_address=$(curl -s http://ipv4.icanhazip.com):${OG_PORT}656
 Restart=always
-RestartSec=3
-LimitNOFILE=65535
+RestartSec=5
+LimitNOFILE=4096
 
 [Install]
 WantedBy=multi-user.target
