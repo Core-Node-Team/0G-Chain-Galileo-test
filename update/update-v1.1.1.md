@@ -150,6 +150,7 @@ After=network-online.target
 [Service]
 User=$USER
 ExecStart=$HOME/go/bin/0gchaind start \
+    --chain-spec devnet \
     --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \
     --kzg.trusted-setup-path=kzg-trusted-setup.json \
     --engine.jwt-secret-path=jwt-secret.hex \
@@ -162,7 +163,6 @@ ExecStart=$HOME/go/bin/0gchaind start \
     --home $HOME/.0gchaind/0g-home/0gchaind-home \
     --p2p.external_address $(curl -s http://ipv4.icanhazip.com):${OG_PORT}656 \
     --p2p.seeds 85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656
-Environment=CHAIN_SPEC=devnet
 WorkingDirectory=$HOME/galileo-used
 Restart=always
 RestartSec=3
