@@ -18,7 +18,6 @@ sudo chmod 777 $HOME/galileo-update/bin/geth
 sudo chmod 777 $HOME/galileo-update/bin/0gchaind
 cp $HOME/galileo-update/bin/geth $HOME/go/bin/geth
 cp $HOME/galileo-update/bin/0gchaind $HOME/go/bin/0gchaind
-cp $HOME/galileo-update/geth-config.toml $HOME/galileo-used/geth-config.toml
 ```
 
 ```bash
