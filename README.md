@@ -61,9 +61,9 @@ rm -rf $HOME/.0gchaind
 
 ```bash
 cd $HOME
-wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.0/galileo-v1.1.0.tar.gz
-tar -xzvf galileo-v1.1.0.tar.gz -C $HOME
-rm -rf $HOME/galileo-v1.1.0.tar.gz
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.1/galileo-v1.1.1.tar.gz
+tar -xzvf galileo-v1.1.1.tar.gz -C $HOME
+rm -rf $HOME/galileo-v1.1.1.tar.gz
 mv $HOME/galileo $HOME/galileo-used
 ```
 
@@ -163,29 +163,29 @@ ln -sf $HOME/.0gchaind/0g-home/0gchaind-home/config/client.toml $HOME/.0gchaind/
 ```bash
 sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
 [Unit]
-Description=0gchaind Node Service
-After=network-online.target
+Description=0GChainD Service
+After=network.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/0gchaind start \
-    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \
-    --beacon-kit.kzg.trusted-setup-path=$HOME/galileo-used/kzg-trusted-setup.json \
-    --beacon-kit.engine.jwt-secret-path=$HOME/galileo-used/jwt-secret.hex \
-    --beacon-kit.kzg.implementation=crate-crypto/go-kzg-4844 \
-    --beacon-kit.block-store-service.enabled \
-    --beacon-kit.node-api.enabled \
-    --beacon-kit.node-api.logging \
-    --beacon-kit.node-api.address 0.0.0.0:${OG_PORT}500 \
-    --pruning=custom \
-    --home $HOME/.0gchaind/0g-home/0gchaind-home \
-    --p2p.external_address $(curl -s http://ipv4.icanhazip.com):${OG_PORT}656 \
-    --p2p.seeds 85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656
-Environment=CHAIN_SPEC=devnet
 WorkingDirectory=$HOME/galileo-used
+ExecStart=$HOME/go/bin/0gchaind start \\
+    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \\
+    --chain-spec devnet \\
+    --kzg.trusted-setup-path=$HOME/galileo-used/kzg-trusted-setup.json \\
+    --engine.jwt-secret-path=$HOME/galileo-used/jwt-secret.hex \\
+    --kzg.implementation=crate-crypto/go-kzg-4844 \\
+    --block-store-service.enabled \\
+    --node-api.enabled \\
+    --node-api.logging \\
+    --node-api.address 0.0.0.0:${OG_PORT}500 \\
+    --pruning=nothing \\
+    --home=$HOME/.0gchaind/0g-home/0gchaind-home \\
+    --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \\
+    --p2p.external_address=$(curl -s http://ipv4.icanhazip.com):${OG_PORT}656
 Restart=always
-RestartSec=3
-LimitNOFILE=65535
+RestartSec=5
+LimitNOFILE=4096
 
 [Install]
 WantedBy=multi-user.target
@@ -246,7 +246,6 @@ sudo journalctl -u 0gchaind -f -o cat
 ```bash
 sudo journalctl -u geth -f -o cat
 ```
-
 ## 5️⃣ Wallet Operations
 
 ### ➡️ Create Wallet
