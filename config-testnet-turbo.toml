@@ -84,7 +84,7 @@ log_contract_address = "0xbD75117F80b4E22698D0Cd7612d92BDb8eaff628"
 
 # Block number to sync event logs from blockchain. Generally, this is
 # the block number when flow contract deployed.
-log_sync_start_block_number = 0
+log_sync_start_block_number = 326165
 
 # Number of blocks to confirm a transaction.
 # confirmation_block_count = 3
