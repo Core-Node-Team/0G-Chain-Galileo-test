@@ -12,7 +12,7 @@ cp "$HOME/0g-storage-node/run/config-testnet-turbo.toml" "$HOME/0g-storage-node/
 curl -o $HOME/0g-storage-node/run/config-testnet-turbo.toml https://raw.githubusercontent.com/Core-Node-Team/0G-Chain-Galileo-test/refs/heads/main/config-testnet-turbo.toml
 ```
 ```
-rm -rf $HOME/0g-storage-node/run/db/data_db
+rm -rf $HOME/0g-storage-node/run/db/data_db $HOME/0g-storage-node/run/log $HOME/0g-storage-node/run/network
 ```
 ```
 systemctl start zgsd
