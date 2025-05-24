@@ -27,7 +27,7 @@
 ### 🚧Gerekli kurulumlar
 ```
 sudo apt update && sudo apt upgrade -y
-sudo apt install curl git wget htop tmux build-essential jq make pkg-config libclang-dev libssl-dev lz4 gcc unzip -y
+sudo apt install curl git wget htop tmux build-essential jq cmake make pkg-config libclang-dev libssl-dev lz4 gcc unzip -y
 ```
 
 ### 🚧 Go kurulumu
