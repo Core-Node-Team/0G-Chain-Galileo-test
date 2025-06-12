@@ -5,7 +5,6 @@ sudo systemctl stop 0gchaind geth
 ```
 ```
 cd $HOME
-rm -rf galileo-used
 wget -q https://github.com/0glabs/0gchain-NG/releases/download/v1.2.0/galileo-v1.2.0.tar.gz
 tar -xzf galileo-v1.2.0.tar.gz
 mv $HOME/galileo-v1.2.0 $HOME/galileo-update-v1.2.0
