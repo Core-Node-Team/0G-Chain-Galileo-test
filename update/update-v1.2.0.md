@@ -10,8 +10,8 @@ wget -q https://github.com/0glabs/0gchain-NG/releases/download/v1.2.0/galileo-v1
 tar -xzf galileo-v1.2.0.tar.gz
 mv $HOME/galileo-v1.2.0 $HOME/galileo-update-v1.2.0
 rm galileo-v1.2.0.tar.gz
-chmod +x $HOME/galileo-used/bin/0gchaind
-chmod +x $HOME/galileo-used/bin/geth
+chmod +x $HOME/galileo-update-v1.2.0/bin/0gchaind
+chmod +x $HOME/galileo-update-v1.2.0/bin/geth
 cp $HOME/galileo-update-v1.2.0/bin/geth $HOME/go/bin/geth
 cp $HOME/galileo-update-v1.2.0/bin/0gchaind $HOME/go/bin/0gchaind
 ```
