@@ -61,9 +61,9 @@ rm -rf $HOME/.0gchaind
 
 ```bash
 cd $HOME
-wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.1/galileo-v1.1.1.tar.gz
-tar -xzvf galileo-v1.1.1.tar.gz -C $HOME
-rm -rf $HOME/galileo-v1.1.1.tar.gz
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.2.0/galileo-v1.2.0.tar.gz
+tar -xzvf galileo-v1.2.0.tar.gz -C $HOME
+rm -rf $HOME/galileo-v1.2.0.tar.gz
 mv $HOME/galileo $HOME/galileo-used
 ```
 
@@ -169,19 +169,20 @@ After=network.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/galileo-used
-ExecStart=$HOME/go/bin/0gchaind start \\
-    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \\
-    --chain-spec devnet \\
-    --kzg.trusted-setup-path=$HOME/galileo-used/kzg-trusted-setup.json \\
-    --engine.jwt-secret-path=$HOME/galileo-used/jwt-secret.hex \\
-    --kzg.implementation=crate-crypto/go-kzg-4844 \\
-    --block-store-service.enabled \\
-    --node-api.enabled \\
-    --node-api.logging \\
-    --node-api.address 0.0.0.0:${OG_PORT}500 \\
-    --pruning=nothing \\
-    --home=$HOME/.0gchaind/0g-home/0gchaind-home \\
-    --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \\
+ExecStart=$HOME/go/bin/0gchaind start \
+    --rpc.laddr tcp://0.0.0.0:${OG_PORT}657 \
+    --chaincfg.chain-spec devnet \
+    --chaincfg.kzg.trusted-setup-path=$HOME/galileo-used/kzg-trusted-setup.json \
+    --chaincfg.engine.jwt-secret-path=$HOME/galileo-used/jwt-secret.hex \
+    --chaincfg.kzg.implementation=crate-crypto/go-kzg-4844 \
+    --chaincfg.block-store-service.enabled \
+    --chaincfg.node-api.enabled \
+    --chaincfg.node-api.logging \
+    --chaincfg.node-api.address 0.0.0.0:<OG_PORT>500 \
+    --chaincfg.engine.rpc-dial-url=http://localhost:${OG_PORT}551 \
+    --pruning=nothing \
+    --home=$HOME/.0gchaind/0g-home/0gchaind-home \
+    --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
     --p2p.external_address=$(curl -s http://ipv4.icanhazip.com):${OG_PORT}656
 Restart=always
 RestartSec=5
