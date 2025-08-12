@@ -46,7 +46,7 @@ ExecStart=$HOME/go/bin/0gchaind start \
     --chaincfg.engine.rpc-dial-url=http://localhost:${OG_PORT}551 \
     --pruning=nothing \
     --chaincfg.restaking.enabled \
-    --chaincfg.restaking.symbiotic-rpc-dial-url https://endpoints.omniatech.io/v1/eth/holesky/public \
+    --chaincfg.restaking.symbiotic-rpc-dial-url holoski+bimiktar-para-için-rpc-ekle \
     --chaincfg.restaking.symbiotic-get-logs-block-range 256 \
     --home=$HOME/.0gchaind/0g-home/0gchaind-home \
     --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
