@@ -47,7 +47,7 @@ ExecStart=$HOME/go/bin/0gchaind start \
     --pruning=nothing \
     --chaincfg.restaking.enabled \
     --chaincfg.restaking.symbiotic-rpc-dial-url holoski+bimiktar-para-için-rpc-ekle \
-    --chaincfg.restaking.symbiotic-get-logs-block-range 256 \
+    --chaincfg.restaking.symbiotic-get-logs-block-range 100 \
     --home=$HOME/.0gchaind/0g-home/0gchaind-home \
     --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
     --p2p.external_address=$(curl -s http://ipv4.icanhazip.com):${OG_PORT}656
