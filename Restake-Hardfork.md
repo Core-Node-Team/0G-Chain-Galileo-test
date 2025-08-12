@@ -19,6 +19,7 @@ cd galileo-v2.0.1
 sudo chmod +x $HOME/galileo-v2.0.1/bin/0gchaind
 cp $HOME/galileo-v2.0.1/bin/0gchaind $HOME/go/bin/0gchaind
 ```
+NOT: aşağıdaki port ve servis işlemleri validator deil iseniz yapmanıza gerenk yok.
 ```
 echo "export OG_PORT=56" >> $HOME/.bash_profile
 source $HOME/.bash_profile
